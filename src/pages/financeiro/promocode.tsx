@@ -1,36 +1,33 @@
 import { List, ListItem } from '@paljs/ui/List';
 import { Card } from '@paljs/ui/Card';
-import User from '@paljs/ui/User';
+
 import Row from '@paljs/ui/Row';
 import Col from '@paljs/ui/Col';
 import React from 'react';
 import Layout from 'Layouts';
 import { NextPage } from 'next'
 
+
 interface Props {
   star?: any;
 }
 
+const url_back=process.env.URL_BACK;
 const PromoCodes: NextPage<Props> = ({ star })=> {
-  const userList = [
-    { name: 'Carla Espinosa', title: 'Nurse' },
-    { name: 'Bob Kelso', title: 'Doctor of Medicine' },
-    { name: 'Janitor', title: 'Janitor' },
-    { name: 'Perry Cox', title: 'Doctor of Medicine' },
-    { name: 'Ben Sullivan', title: 'Carpenter and photographer' },
-  ];
 
+
+  console.log(star)
   return (
     <Layout title="PromoCodes">
       <Row>
 
         <Col breakPoint={{ xs: 12, md: 12 }}>
           <Card size="Small">
-            <header>PromoCodes {star}</header>
+            <header>PromoCodes </header>
             <List>
-              {userList.map((user, index) => (
+              {star.map((user, index) => (
                 <ListItem key={index}>
-                  <User title={user.title} name={user.name} />
+                  <div>{user.nome}<br/>{user.email}</div>
                 </ListItem>
               ))}
             </List>
@@ -41,13 +38,14 @@ const PromoCodes: NextPage<Props> = ({ star })=> {
   );
 };
 PromoCodes.getInitialProps = async () => {
-  //const url_back=process.env.URL_BACK;
+
 
     const res = await fetch(
-      'https://anna-fitas.herokuapp.com/admin/usuarios/4', {method: 'GET'}
+      `${url_back}/usuarios`, {method: 'GET'}
     );
     const json = await res.json();
-  return { star: json.nome }
+    console.log(json)
+  return { star: json }
   
 }
 export default PromoCodes;
