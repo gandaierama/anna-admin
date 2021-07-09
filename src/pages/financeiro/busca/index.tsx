@@ -4,11 +4,11 @@ import Col from '@paljs/ui/Col';
 import React from 'react';
 import Layout from 'Layouts';
 
-const RelatoriosPage = () => {
+const BuscaPage = () => {
 
 
   return (
-    <Layout title="Relatorios">
+    <Layout title="Busca">
       <Row>
         <Col breakPoint={{ xs: 12, md: 6 }}>
           <Card size="Small">
@@ -26,4 +26,4 @@ const RelatoriosPage = () => {
     </Layout>
   );
 };
-export default RelatoriosPage;
+export default BuscaPage;
